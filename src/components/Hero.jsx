@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
-import { hero, heroFrames, tickerItems } from '../data.js'
-import AsciiField from './AsciiField.jsx'
+import { hero, heroFrames, latestProduct, tickerItems } from '../data.js'
+import Btn from './Btn.jsx'
+import DeviceFrame from './DeviceFrame.jsx'
 
 const ROTATE_MS = 4200
 
@@ -11,6 +12,7 @@ export default function Hero() {
   const [typed, setTyped] = useState('')
   const items = tickerItems()
   const frame = heroFrames[index]
+  const latest = latestProduct()
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -56,82 +58,87 @@ export default function Hero() {
   const unlock = useCallback(() => setLocked(false), [])
 
   return (
-    <header className={`hero${locked ? ' is-locked' : ''}`} id="top">
-      <div className="hero__scanlines" aria-hidden="true" />
-      <AsciiField
-        className="hero__field"
-        seed={11 + index * 3}
-        rows={20}
-        cols={64}
-        dense={locked}
-      />
-
+    <section className={`hero${locked ? ' is-locked' : ''}`} id="top">
       <div className="hero__stage">
-        {heroFrames.map((f, i) => (
-          <div
-            key={f.id}
-            className={`hero__frame${i === index ? ' is-active' : ''}${locked && i === index ? ' is-locked' : ''}`}
-          >
-            <img className="hero__media" src={f.src} alt="" draggable={false} />
-            <div className="hero__veil" />
+        <div className="hero__copy">
+          <p className="eyebrow">
+            <span className="pulse" aria-hidden="true" />
+            {frame.title}
+            {locked ? ' · locked' : ' · live'}
+          </p>
+          <h1 className="hero__wordmark">
+            NO
+            <br />
+            DAYS
+            <br />
+            <em>IDLE</em>
+          </h1>
+          <p className="hero__line">{hero.line}</p>
+          {locked ? (
+            <p className="hero__quote" key={frame.id}>
+              “{typed}
+              <span className="hero__caret" aria-hidden="true">
+                _
+              </span>
+              ”
+            </p>
+          ) : (
+            <p className="hero__hint">Tap a frame to lock</p>
+          )}
+
+          <aside className="hero__card">
+            <p className="eyebrow">Latest drop</p>
+            <p className="hero__card-name">{latest.name}</p>
+            <p className="hero__card-meta">{latest.kicker}</p>
+            <Btn href={latest.ctaHref} icon="down">
+              {latest.ctaLabel}
+            </Btn>
+          </aside>
+        </div>
+
+        <div className="hero__portrait">
+          <div className="hero__device">
+            {heroFrames.map((f, i) => (
+              <div
+                key={f.id}
+                className={`hero__frame${i === index ? ' is-active' : ''}`}
+              >
+                <DeviceFrame src={f.src} alt="" variant={f.variant} />
+              </div>
+            ))}
           </div>
-        ))}
+
+          <div className="hero__thumbs" role="group" aria-label="Hero frames">
+            {heroFrames.map((f, i) => (
+              <button
+                key={f.id}
+                type="button"
+                className={`hero__thumb${i === index ? ' is-active' : ''}`}
+                onClick={() => (locked && i === index ? unlock() : lockFrame(i))}
+                aria-pressed={locked && i === index}
+                aria-label={`${f.title}${locked && i === index ? ' (unlock)' : ' (lock)'}`}
+              >
+                <span className="hero__thumb-shell">
+                  <span className="hero__thumb-core">
+                    <img src={f.src} alt="" draggable={false} />
+                  </span>
+                </span>
+                <span>{f.title}</span>
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className="hero__ticker" aria-hidden="true">
         <div className="hero__ticker-track">
           {[...items, ...items].map((label, i) => (
-            <span key={`${label}-${i}`} className="hero__ticker-item">
-              <span className="hero__ticker-sep">◆</span> {label}{' '}
+            <span key={`${label}-${i}`}>
+              <span className="hero__ticker-sep">◆</span> {label}
             </span>
           ))}
         </div>
       </div>
-
-      <div className="hero__inner">
-        <p className="hero__frame-label">
-          <span className="hero__dot" aria-hidden="true" />
-          {frame.title}
-          {locked ? ' · locked' : ' · live'}
-        </p>
-
-        <h1 className="hero__wordmark">{hero.wordmark}</h1>
-        <p className="hero__line">{hero.line}</p>
-
-        {locked ? (
-          <p className="hero__quote" key={frame.id}>
-            “{typed}
-            <span className="hero__caret" aria-hidden="true">
-              _
-            </span>
-            ”
-          </p>
-        ) : (
-          <p className="hero__hint">Tap a frame to lock</p>
-        )}
-
-        <div className="hero__thumbs" role="group" aria-label="Hero frames">
-          {heroFrames.map((f, i) => (
-            <button
-              key={f.id}
-              type="button"
-              className={`hero__thumb${i === index ? ' is-active' : ''}`}
-              onClick={() => (locked && i === index ? unlock() : lockFrame(i))}
-              aria-pressed={locked && i === index}
-              aria-label={`${f.title}${locked && i === index ? ' (unlock)' : ' (lock)'}`}
-            >
-              <span className="hero__thumb-frame">
-                <img src={f.src} alt="" draggable={false} />
-              </span>
-              <span>{f.title}</span>
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <a className="hero__scroll" href="#capture" aria-label="Continue to Capture">
-        <span aria-hidden="true">↓</span>
-      </a>
-    </header>
+    </section>
   )
 }

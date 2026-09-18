@@ -1,5 +1,12 @@
 /** Product + world data for the NODAYSIDLE cinematic portfolio. */
 
+export const brand = {
+  github: 'https://github.com/nodaysidle',
+  githubLabel: 'github.com/nodaysidle',
+  tag: 'Independent software workshop',
+  latestSlug: 'voice-anywhere',
+}
+
 export const worlds = [
   {
     id: 'capture',
@@ -70,6 +77,7 @@ export const products = [
     stack: 'macOS menu bar',
     ticker: 'Voice · macOS · DMG',
     hall: '/media/hall/nodaysidle-voice.png',
+    art: 'icon',
   },
   {
     slug: 'synapse-notes',
@@ -94,6 +102,7 @@ export const products = [
       'https://github.com/nodaysidle/nodaysrecording/releases/download/v0.1.0/NoDaysRecord-0.1.0.dmg',
     ticker: 'NoDaysRecord · macOS · DMG',
     hall: '/media/hall/nodaysrecord.png',
+    art: 'icon',
   },
 
   // —— Create ——
@@ -122,6 +131,7 @@ export const products = [
     stack: 'Tauri aarch64',
     ticker: 'Cascade V3 · aarch64 · DMG',
     hall: '/media/hall/cascade-v3.png',
+    art: 'icon',
   },
   {
     slug: 'pocket-drafts',
@@ -134,6 +144,7 @@ export const products = [
       'https://github.com/nodaysidle/pocket-drafts/releases/download/v1.0/PocketDrafts-1.0-macos-universal.zip',
     ticker: 'Pocket Drafts · macOS · zip',
     hall: '/media/hall/pocket-drafts.png',
+    art: 'icon',
   },
   {
     slug: 'scribeflow-pro',
@@ -159,6 +170,7 @@ export const products = [
       'https://github.com/nodaysidle/nodaystypst/releases/download/v0.1.0/Nodaystypst-0.1.0-macOS-arm64.dmg',
     ticker: 'Nodaystypst · arm64 · DMG',
     hall: '/media/hall/nodaystypst.png',
+    art: 'icon',
   },
 
   // —— Clean ——
@@ -173,6 +185,7 @@ export const products = [
       'https://github.com/nodaysidle/nodaysidle-cistilka/releases/download/v0.1.0/Cistilka-0.1.0.dmg',
     ticker: 'Cistilka · macOS · DMG',
     hall: '/media/hall/cistilka.png',
+    art: 'icon',
   },
   {
     slug: 'shareguard',
@@ -185,6 +198,7 @@ export const products = [
       'https://github.com/nodaysidle/nodaysidle-shareguard/releases/download/v0.1.0-dmg.20260727/ShareGuard-0.1.0.dmg',
     ticker: 'ShareGuard · macOS · DMG',
     hall: '/media/hall/shareguard.png',
+    art: 'icon',
   },
   {
     slug: 'batchrename-pro',
@@ -197,6 +211,7 @@ export const products = [
       'https://github.com/nodaysidle/batchrename-pro/releases/download/v0.1.0/BatchRename-Pro-0.1.0-aarch64.dmg',
     ticker: 'BatchRename Pro · aarch64 · DMG',
     hall: '/media/hall/batchrename-pro.png',
+    art: 'icon',
   },
   {
     slug: 'cliprail',
@@ -209,6 +224,7 @@ export const products = [
       'https://github.com/nodaysidle/cliprail/releases/download/v1.2.0-dmg.20260727/ClipRail-1.2.0.dmg',
     ticker: 'ClipRail · macOS · DMG',
     hall: '/media/hall/cliprail.png',
+    art: 'icon',
   },
   {
     slug: 'small-count',
@@ -221,6 +237,7 @@ export const products = [
       'https://github.com/nodaysidle/small-count/releases/download/v0.1.0/Small-Count-v0.1.0-macos.dmg',
     ticker: 'Small Count · macOS · DMG',
     hall: '/media/hall/small-count.png',
+    art: 'icon',
   },
 
   // —— Listen ——
@@ -236,6 +253,7 @@ export const products = [
     stack: 'Tauri + React · aarch64',
     ticker: 'Sonora · Tauri+React · aarch64',
     hall: '/media/hall/sonora.png',
+    art: 'icon',
   },
 ]
 
@@ -246,18 +264,21 @@ export const heroFrames = [
     title: 'Voice',
     src: '/media/hero/voice.png',
     quote: 'Hold. Speak. Text lands.',
+    variant: 'phone',
   },
   {
     id: 'excalidays',
     title: 'Excalidays',
     src: '/media/hero/excalidays.png',
     quote: 'A canvas for days you draw.',
+    variant: 'laptop',
   },
   {
     id: 'synapse',
     title: 'Synapse',
     src: '/media/hero/synapse.png',
     quote: 'Notes that keep the thread.',
+    variant: 'phone',
   },
 ]
 
@@ -267,8 +288,8 @@ export const hero = {
 }
 
 export const footer = {
-  href: 'https://github.com/nodaysidle',
-  label: 'github.com/nodaysidle',
+  href: brand.github,
+  label: brand.githubLabel,
 }
 
 export function productsForWorld(worldId) {
@@ -281,4 +302,8 @@ export function productBySlug(slug) {
 
 export function tickerItems() {
   return products.map((p) => p.ticker)
+}
+
+export function latestProduct() {
+  return productBySlug(brand.latestSlug) || products[0]
 }

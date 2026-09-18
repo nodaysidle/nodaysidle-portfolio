@@ -1,42 +1,33 @@
-import { hallAscii } from '../ascii.js'
+import Reveal from './Reveal.jsx'
 
 export default function HallStrip({ products, worldLabel }) {
   return (
-    <div className={`hall snap hall--${products[0]?.world || 'x'}`} aria-label={`${worldLabel} hall`}>
-      <div className="hall__head">
-        <p className="hall__label">
-          <span aria-hidden="true">| </span>Hall<span aria-hidden="true"> |</span>
-        </p>
-        <p className="hall__count">{products.length} collectibles</p>
+    <div className={`hall hall--${products[0]?.world || 'x'}`} aria-label={`${worldLabel} hall`}>
+      <div className="shell hall__head">
+        <p className="eyebrow">Hall</p>
+        <p className="hall__count">{products.length} repos</p>
       </div>
-      <div className="hall__rail" role="list">
-        {products.map((p) => {
-          const hasImg = Boolean(p.hall) && !p.hall.endsWith('.svg')
-          const art = !hasImg ? hallAscii[p.slug] : null
-          return (
+      <div className="hall__rail">
+        {products.map((p, i) => (
+          <Reveal key={p.slug} delay={i * 70} className="hall__tile-wrap">
             <a
-              key={p.slug}
-              className={`hall__tile${art ? ' hall__tile--ascii' : ''}`}
+              className={`hall__tile${p.art === 'icon' ? ' hall__tile--icon' : ''}`}
               href={p.ctaHref}
               rel="noopener noreferrer"
-              role="listitem"
               title={`${p.name} — ${p.ctaLabel}`}
             >
-              <div className="hall__media">
-                {art ? (
-                  <pre className="hall__ascii" aria-hidden="true">
-                    {art}
-                  </pre>
-                ) : (
+              <span className="hall__media">
+                <span className="hall__core">
                   <img src={p.hall} alt="" draggable={false} />
-                )}
-                <span className="hall__frame" aria-hidden="true" />
-              </div>
-              <span className="hall__name">{p.name}</span>
-              <span className="hall__cta">{p.ctaLabel}</span>
+                </span>
+              </span>
+              <span className="hall__meta">
+                <span className="hall__name">{p.name}</span>
+                <span className="hall__cta">{p.ctaLabel}</span>
+              </span>
             </a>
-          )
-        })}
+          </Reveal>
+        ))}
       </div>
     </div>
   )

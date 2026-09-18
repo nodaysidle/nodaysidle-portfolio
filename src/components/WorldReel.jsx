@@ -1,15 +1,9 @@
 import { productsForWorld, productBySlug } from '../data.js'
+import Btn from './Btn.jsx'
 import DeviceFrame from './DeviceFrame.jsx'
 import HallStrip from './HallStrip.jsx'
-import AsciiField from './AsciiField.jsx'
+import Reveal from './Reveal.jsx'
 
-/**
- * Film-chapter layouts — media-first. ASCII is texture only.
- * Capture: stacked phone left
- * Create: offset laptop (denser plate)
- * Clean: horizontal split + real app frame
- * Listen: full-bleed center stage
- */
 export default function WorldReel({ world }) {
   const items = productsForWorld(world.id)
   const focus = productBySlug(world.focusSlug)
@@ -18,53 +12,42 @@ export default function WorldReel({ world }) {
     layout === 'capture' && focus?.slug === 'voice-anywhere' ? 'phone' : 'laptop'
 
   return (
-    <section
-      className={`world world--${world.id} world-layout--${layout}`}
-      id={world.id}
-      aria-labelledby={`${world.id}-label`}
-    >
-      <div className="world__sticky" id={`${world.id}-label`}>
-        {world.label}
-      </div>
-
-      <div className={`world__plate snap plate--${layout}`}>
-        <img className="world__plate-media" src={world.plate} alt="" />
-        <div className="world__plate-veil" />
-        <AsciiField
-          className="world__plate-field"
-          seed={world.id.charCodeAt(0)}
-          rows={8}
-          cols={40}
-          dense={false}
-        />
-
+    <section className={`world world--${world.id}`} id={world.id} aria-labelledby={`${world.id}-title`}>
+      <div className={`world__plate plate--${layout}`}>
         <div className="world__plate-copy">
-          <p className="world__kicker">{world.kicker}</p>
-          <h2 className="world__title">{world.label}</h2>
+          <p className="eyebrow">{world.kicker}</p>
+          <h2 className="world__title" id={`${world.id}-title`}>
+            {world.label}
+          </h2>
           <p className="world__line">{world.line}</p>
         </div>
+        {world.plate ? (
+          <div className="world__polaroid">
+            <div className="world__polaroid-shell">
+              <div className="world__polaroid-core">
+                <img src={world.plate} alt="" draggable={false} />
+              </div>
+            </div>
+          </div>
+        ) : null}
       </div>
 
       {focus ? (
-        <article className={`moment snap moment--${layout}`} id={focus.slug}>
+        <article className={`moment moment--${layout}`} id={focus.slug}>
           {(layout === 'create' || layout === 'listen') && (
-            <div className={`moment__copy${layout === 'listen' ? ' moment__copy--over' : ''}`}>
+            <Reveal className={`moment__copy${layout === 'listen' ? ' moment__copy--over' : ''}`}>
               <MomentCopy world={world} focus={focus} />
-            </div>
+            </Reveal>
           )}
 
-          <div className="moment__stage">
-            <DeviceFrame
-              src={world.heroMedia}
-              alt={focus.name}
-              variant={deviceVariant}
-            />
-          </div>
+          <Reveal className="moment__stage" delay={80}>
+            <DeviceFrame src={world.heroMedia} alt={focus.name} variant={deviceVariant} />
+          </Reveal>
 
           {(layout === 'capture' || layout === 'clean') && (
-            <div className="moment__copy">
+            <Reveal className="moment__copy" delay={120}>
               <MomentCopy world={world} focus={focus} />
-            </div>
+            </Reveal>
           )}
         </article>
       ) : null}
@@ -75,16 +58,16 @@ export default function WorldReel({ world }) {
 }
 
 function MomentCopy({ world, focus }) {
+  const stack = focus.stack && focus.stack !== focus.kicker ? focus.stack : null
   return (
     <>
-      <p className="moment__meta">{focus.kicker}</p>
+      <p className="eyebrow">{focus.kicker}</p>
       <h3 className="moment__line">{world.heroLine}</h3>
       <p className="moment__sparse">{focus.line}</p>
-      {focus.stack ? <p className="moment__stack">{focus.stack}</p> : null}
-      <a className="moment__cta" href={focus.ctaHref} rel="noopener noreferrer">
-        <span aria-hidden="true">↓ </span>
+      {stack ? <p className="moment__stack">{stack}</p> : null}
+      <Btn href={focus.ctaHref} icon="down">
         {focus.ctaLabel}
-      </a>
+      </Btn>
     </>
   )
 }
