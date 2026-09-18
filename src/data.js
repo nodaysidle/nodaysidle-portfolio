@@ -6,24 +6,40 @@ export const worlds = [
     label: 'Capture',
     kicker: 'Sound in. Signal out.',
     line: 'Voice, notes, and tape — on the device you already hold.',
+    plate: '/media/worlds/capture-plate.png',
+    heroMedia: '/media/worlds/capture-hero.png',
+    heroLine: 'Dictate from anywhere.',
+    focusSlug: 'voice-anywhere',
   },
   {
     id: 'create',
     label: 'Create',
     kicker: 'Make the thing.',
     line: 'Boards, contracts, drafts, type — local-first tools.',
+    plate: '/media/worlds/create-plate.png',
+    heroMedia: '/media/worlds/create-hero.png',
+    heroLine: 'Draw the day.',
+    focusSlug: 'excalidays',
   },
   {
     id: 'clean',
     label: 'Clean',
     kicker: 'Less noise.',
     line: 'Rename, redact, count, and clear what gets in the way.',
+    plate: '/media/worlds/clean-plate.svg',
+    heroMedia: '/media/worlds/clean-hero.svg',
+    heroLine: 'Clear the clutter.',
+    focusSlug: 'cistilka',
   },
   {
     id: 'listen',
     label: 'Listen',
     kicker: 'Play it back.',
     line: 'One room for sound that stays on your machine.',
+    plate: '/media/worlds/listen-plate.svg',
+    heroMedia: '/media/worlds/listen-hero.svg',
+    heroLine: 'Stay local. Listen.',
+    focusSlug: 'sonora',
   },
 ]
 
@@ -39,6 +55,8 @@ export const products = [
     ctaHref:
       'https://github.com/nodaysidle/nodaysidle-voice-anywhere-v2/releases/download/v0.4.0/VoiceAnywhere-0.4.0.apk',
     stack: 'Android 12+',
+    ticker: 'Voice Anywhere · Android · debug APK',
+    hall: '/media/hall/voice-anywhere.png',
   },
   {
     slug: 'nodaysidle-voice',
@@ -50,6 +68,8 @@ export const products = [
     ctaHref:
       'https://github.com/nodaysidle/nodaysidle-vois/releases/download/v0.2.0/NODAYSIDLE-Voice-0.2.0.dmg',
     stack: 'macOS menu bar',
+    ticker: 'Voice · macOS · DMG',
+    hall: '/media/hall/nodaysidle-voice.png',
   },
   {
     slug: 'synapse-notes',
@@ -60,6 +80,8 @@ export const products = [
     ctaLabel: 'Download debug APK',
     ctaHref:
       'https://github.com/nodaysidle/synapse-notes/releases/download/v0.4.3/synapse-notes-0.4.3-debug.apk',
+    ticker: 'Synapse Notes · Android · debug APK',
+    hall: '/media/hall/synapse-notes.png',
   },
   {
     slug: 'nodaysrecord',
@@ -70,6 +92,8 @@ export const products = [
     ctaLabel: 'Download DMG',
     ctaHref:
       'https://github.com/nodaysidle/nodaysrecording/releases/download/v0.1.0/NoDaysRecord-0.1.0.dmg',
+    ticker: 'NoDaysRecord · macOS · DMG',
+    hall: '/media/hall/nodaysrecord.svg',
   },
 
   // —— Create ——
@@ -83,6 +107,8 @@ export const products = [
     ctaHref:
       'https://github.com/nodaysidle/excalidays/releases/download/v0.1.0/Excalidays-0.1.0.dmg',
     stack: 'Phase 0/1 · Swift / AppKit / SwiftUI / WKWebView',
+    ticker: 'Excalidays · macOS · Phase 0/1',
+    hall: '/media/hall/excalidays.png',
   },
   {
     slug: 'cascade-v3',
@@ -94,6 +120,8 @@ export const products = [
     ctaHref:
       'https://github.com/nodaysidle/nodaysidle-cascade-v3/releases/download/v3.0.0/NODAYSIDLE-Cascade-V3-3.0.0-aarch64.dmg',
     stack: 'Tauri aarch64',
+    ticker: 'Cascade V3 · aarch64 · DMG',
+    hall: '/media/hall/cascade-v3.png',
   },
   {
     slug: 'pocket-drafts',
@@ -104,6 +132,8 @@ export const products = [
     ctaLabel: 'Download zip',
     ctaHref:
       'https://github.com/nodaysidle/pocket-drafts/releases/download/v1.0/PocketDrafts-1.0-macos-universal.zip',
+    ticker: 'Pocket Drafts · macOS · zip',
+    hall: '/media/hall/pocket-drafts.png',
   },
   {
     slug: 'scribeflow-pro',
@@ -115,6 +145,8 @@ export const products = [
     ctaHref:
       'https://github.com/nodaysidle/scribeflowpro/releases/download/v1.0.0-dmg.20260727/ScribeFlowPro-1.0.0.dmg',
     stack: 'Needs ~/Models/',
+    ticker: 'ScribeFlow Pro · macOS · DMG',
+    hall: '/media/hall/scribeflow-pro.png',
   },
   {
     slug: 'nodaystypst',
@@ -125,6 +157,8 @@ export const products = [
     ctaLabel: 'Download arm64 DMG',
     ctaHref:
       'https://github.com/nodaysidle/nodaystypst/releases/download/v0.1.0/Nodaystypst-0.1.0-macOS-arm64.dmg',
+    ticker: 'Nodaystypst · arm64 · DMG',
+    hall: '/media/hall/nodaystypst.svg',
   },
 
   // —— Clean ——
@@ -137,6 +171,8 @@ export const products = [
     ctaLabel: 'Download DMG',
     ctaHref:
       'https://github.com/nodaysidle/nodaysidle-cistilka/releases/download/v0.1.0/Cistilka-0.1.0.dmg',
+    ticker: 'Cistilka · macOS · DMG',
+    hall: '/media/hall/cistilka.svg',
   },
   {
     slug: 'shareguard',
@@ -147,6 +183,8 @@ export const products = [
     ctaLabel: 'Download DMG',
     ctaHref:
       'https://github.com/nodaysidle/nodaysidle-shareguard/releases/download/v0.1.0-dmg.20260727/ShareGuard-0.1.0.dmg',
+    ticker: 'ShareGuard · macOS · DMG',
+    hall: '/media/hall/shareguard.svg',
   },
   {
     slug: 'batchrename-pro',
@@ -157,6 +195,8 @@ export const products = [
     ctaLabel: 'Download DMG',
     ctaHref:
       'https://github.com/nodaysidle/batchrename-pro/releases/download/v0.1.0/BatchRename-Pro-0.1.0-aarch64.dmg',
+    ticker: 'BatchRename Pro · aarch64 · DMG',
+    hall: '/media/hall/batchrename-pro.png',
   },
   {
     slug: 'cliprail',
@@ -167,6 +207,8 @@ export const products = [
     ctaLabel: 'Download DMG',
     ctaHref:
       'https://github.com/nodaysidle/cliprail/releases/download/v1.2.0-dmg.20260727/ClipRail-1.2.0.dmg',
+    ticker: 'ClipRail · macOS · DMG',
+    hall: '/media/hall/cliprail.svg',
   },
   {
     slug: 'small-count',
@@ -177,6 +219,8 @@ export const products = [
     ctaLabel: 'Download DMG',
     ctaHref:
       'https://github.com/nodaysidle/small-count/releases/download/v0.1.0/Small-Count-v0.1.0-macos.dmg',
+    ticker: 'Small Count · macOS · DMG',
+    hall: '/media/hall/small-count.png',
   },
 
   // —— Listen ——
@@ -190,48 +234,36 @@ export const products = [
     ctaHref:
       'https://github.com/nodaysidle/nodaysidle-sonora/releases/download/v0.1.1/Sonora_0.1.1_aarch64.dmg',
     stack: 'Tauri + React · aarch64',
+    ticker: 'Sonora · Tauri+React · aarch64',
+    hall: '/media/hall/sonora.svg',
   },
 ]
 
-/** Abstract hall-of-fame frames (not product cards). */
-export const filmstrip = [
+/** Hero living surface — three rotating frames. */
+export const heroFrames = [
   {
-    id: 'frame-voice',
+    id: 'voice',
     title: 'Voice',
-    motif: 'pill',
-    hint: 'Dictate. Anywhere.',
+    src: '/media/hero/voice.png',
+    quote: 'Hold. Speak. Text lands.',
   },
   {
-    id: 'frame-excalidays',
+    id: 'excalidays',
     title: 'Excalidays',
-    motif: 'canvas',
-    hint: 'Draw the day.',
+    src: '/media/hero/excalidays.png',
+    quote: 'A canvas for days you draw.',
   },
   {
-    id: 'frame-cascade',
-    title: 'Cascade',
-    motif: 'contracts',
-    hint: 'Stack that flows.',
-  },
-  {
-    id: 'frame-synapse',
+    id: 'synapse',
     title: 'Synapse',
-    motif: 'synapse',
-    hint: 'Notes that fire.',
-  },
-  {
-    id: 'frame-sonora',
-    title: 'Sonora',
-    motif: 'sonora',
-    hint: 'Room for sound.',
+    src: '/media/hero/synapse.png',
+    quote: 'Notes that keep the thread.',
   },
 ]
 
 export const hero = {
   wordmark: 'NODAYSIDLE',
-  line: 'Capture. Create. Clean. Listen.',
-  enterLabel: 'Enter',
-  enterHref: '#capture',
+  line: 'Tools that stay on your machine.',
 }
 
 export const footer = {
@@ -241,4 +273,12 @@ export const footer = {
 
 export function productsForWorld(worldId) {
   return products.filter((p) => p.world === worldId)
+}
+
+export function productBySlug(slug) {
+  return products.find((p) => p.slug === slug)
+}
+
+export function tickerItems() {
+  return products.map((p) => p.ticker)
 }

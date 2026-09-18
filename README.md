@@ -2,9 +2,7 @@
 
 Cinematic portfolio of NODAYSIDLE apps with real GitHub Release downloads.
 
-Near-black void, scroll-snap worlds (Capture / Create / Clean / Listen), sticky world labels, full-bleed product chapters, hall-of-fame filmstrip. Display: Oswald. Body: IBM Plex Sans / Mono. Respects `prefers-reduced-motion`.
-
-Not a card grid. Not a SpaceX five-chapter clone. Not a refresh of `nodaysidle-project-pages`.
+Living hero (rotating frames + lock + release ticker), film-chapter worlds (Capture / Create / Clean / Listen) with ambient plates, focused hero moments, and Hall collectible strips. Display: Oswald. Body: IBM Plex Sans / Mono. Lime selection `#e8ff47`. Respects `prefers-reduced-motion`.
 
 ## Scripts
 
@@ -17,7 +15,7 @@ npm run preview # serve dist/
 
 ## Deploy
 
-`vercel.json` includes SPA rewrites. **Do not push or deploy from this agent** — files stay on disk; parent handles PR + Vercel when ready.
+`vercel.json` includes SPA rewrites. **Do not push or deploy from this agent** — parent handles redeploy when ready.
 
 ## Stack
 

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="100%" height="100%" fill="#111113"/>
+  <rect x="0" y="0" width="100%" height="100%" fill="url(#g)" opacity="0.4"/>
+  <defs>
+    <radialGradient id="g" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#e8ff47" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#111113" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <circle cx="800" cy="450" r="180" fill="none" stroke="rgba(242,242,240,0.2)" stroke-width="3"/><circle cx="800" cy="450" r="120" fill="none" stroke="#e8ff47" stroke-width="4" opacity="0.7"/><circle cx="800" cy="450" r="50" fill="#e8ff47" opacity="0.45"/>
+  <text x="80" y="840" font-family="IBM Plex Mono, monospace" font-size="28" fill="rgba(242,242,240,0.35)" letter-spacing="4">SONORA</text>
+</svg>

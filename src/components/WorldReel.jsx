@@ -1,0 +1,66 @@
+import { productsForWorld, productBySlug } from '../data.js'
+import DeviceFrame from './DeviceFrame.jsx'
+import HallStrip from './HallStrip.jsx'
+
+export default function WorldReel({ world }) {
+  const items = productsForWorld(world.id)
+  const focus = productBySlug(world.focusSlug)
+  const deviceVariant =
+    world.id === 'capture' && focus?.slug === 'voice-anywhere'
+      ? 'phone'
+      : 'laptop'
+
+  return (
+    <section
+      className={`world world--${world.id}`}
+      id={world.id}
+      aria-labelledby={`${world.id}-label`}
+    >
+      <div className="world__sticky" id={`${world.id}-label`}>
+        {world.label}
+      </div>
+
+      {/* Ambient plate */}
+      <div className="world__plate snap">
+        <img className="world__plate-media" src={world.plate} alt="" />
+        <div className="world__plate-veil" />
+        <div className="world__plate-copy">
+          <p className="world__kicker">{world.kicker}</p>
+          <h2 className="world__title">{world.label}</h2>
+          <p className="world__line">{world.line}</p>
+        </div>
+      </div>
+
+      {/* Focused hero moment — CTA lives only here */}
+      {focus ? (
+        <article className="moment snap" id={focus.slug}>
+          <div className="moment__stage">
+            <DeviceFrame
+              src={world.heroMedia}
+              alt={focus.name}
+              variant={deviceVariant}
+            />
+          </div>
+          <div className="moment__copy">
+            <p className="moment__meta">{focus.kicker}</p>
+            <h3 className="moment__line">{world.heroLine}</h3>
+            <p className="moment__sparse">{focus.line}</p>
+            {focus.stack ? (
+              <p className="moment__stack">{focus.stack}</p>
+            ) : null}
+            <a
+              className="moment__cta"
+              href={focus.ctaHref}
+              rel="noopener noreferrer"
+            >
+              <span aria-hidden="true">↓</span>
+              {focus.ctaLabel}
+            </a>
+          </div>
+        </article>
+      ) : null}
+
+      <HallStrip products={items} worldLabel={world.label} />
+    </section>
+  )
+}
