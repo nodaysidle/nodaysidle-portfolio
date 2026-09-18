@@ -26,8 +26,8 @@ export const worlds = [
     label: 'Clean',
     kicker: 'Less noise.',
     line: 'Rename, redact, count, and clear what gets in the way.',
-    plate: '/media/worlds/clean-plate.svg',
-    heroMedia: '/media/worlds/clean-hero.svg',
+    plate: '/media/worlds/clean-plate.png',
+    heroMedia: '/media/worlds/clean-hero.png',
     heroLine: 'Clear the clutter.',
     focusSlug: 'cistilka',
   },
@@ -36,8 +36,8 @@ export const worlds = [
     label: 'Listen',
     kicker: 'Play it back.',
     line: 'One room for sound that stays on your machine.',
-    plate: '/media/worlds/listen-plate.svg',
-    heroMedia: '/media/worlds/listen-hero.svg',
+    plate: '/media/worlds/listen-plate.png',
+    heroMedia: '/media/worlds/listen-hero.png',
     heroLine: 'Stay local. Listen.',
     focusSlug: 'sonora',
   },
@@ -93,7 +93,7 @@ export const products = [
     ctaHref:
       'https://github.com/nodaysidle/nodaysrecording/releases/download/v0.1.0/NoDaysRecord-0.1.0.dmg',
     ticker: 'NoDaysRecord · macOS · DMG',
-    hall: '/media/hall/nodaysrecord.svg',
+    hall: '/media/hall/nodaysrecord.png',
   },
 
   // —— Create ——
@@ -158,7 +158,7 @@ export const products = [
     ctaHref:
       'https://github.com/nodaysidle/nodaystypst/releases/download/v0.1.0/Nodaystypst-0.1.0-macOS-arm64.dmg',
     ticker: 'Nodaystypst · arm64 · DMG',
-    hall: '/media/hall/nodaystypst.svg',
+    hall: '/media/hall/nodaystypst.png',
   },
 
   // —— Clean ——
@@ -172,7 +172,7 @@ export const products = [
     ctaHref:
       'https://github.com/nodaysidle/nodaysidle-cistilka/releases/download/v0.1.0/Cistilka-0.1.0.dmg',
     ticker: 'Cistilka · macOS · DMG',
-    hall: '/media/hall/cistilka.svg',
+    hall: '/media/hall/cistilka.png',
   },
   {
     slug: 'shareguard',
@@ -184,7 +184,7 @@ export const products = [
     ctaHref:
       'https://github.com/nodaysidle/nodaysidle-shareguard/releases/download/v0.1.0-dmg.20260727/ShareGuard-0.1.0.dmg',
     ticker: 'ShareGuard · macOS · DMG',
-    hall: '/media/hall/shareguard.svg',
+    hall: '/media/hall/shareguard.png',
   },
   {
     slug: 'batchrename-pro',
@@ -208,7 +208,7 @@ export const products = [
     ctaHref:
       'https://github.com/nodaysidle/cliprail/releases/download/v1.2.0-dmg.20260727/ClipRail-1.2.0.dmg',
     ticker: 'ClipRail · macOS · DMG',
-    hall: '/media/hall/cliprail.svg',
+    hall: '/media/hall/cliprail.png',
   },
   {
     slug: 'small-count',
@@ -235,7 +235,7 @@ export const products = [
       'https://github.com/nodaysidle/nodaysidle-sonora/releases/download/v0.1.1/Sonora_0.1.1_aarch64.dmg',
     stack: 'Tauri + React · aarch64',
     ticker: 'Sonora · Tauri+React · aarch64',
-    hall: '/media/hall/sonora.svg',
+    hall: '/media/hall/sonora.png',
   },
 ]
 
