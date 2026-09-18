@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { hero, heroFrames, tickerItems } from '../data.js'
+import AsciiField from './AsciiField.jsx'
 
 const ROTATE_MS = 4200
 
@@ -7,6 +8,7 @@ export default function Hero() {
   const [index, setIndex] = useState(0)
   const [locked, setLocked] = useState(false)
   const [reduceMotion, setReduceMotion] = useState(false)
+  const [typed, setTyped] = useState('')
   const items = tickerItems()
   const frame = heroFrames[index]
 
@@ -26,42 +28,61 @@ export default function Hero() {
     return () => window.clearInterval(id)
   }, [locked, reduceMotion])
 
+  useEffect(() => {
+    if (!locked) {
+      setTyped('')
+      return undefined
+    }
+    const q = frame.quote
+    if (reduceMotion) {
+      setTyped(q)
+      return undefined
+    }
+    setTyped('')
+    let i = 0
+    const id = window.setInterval(() => {
+      i += 1
+      setTyped(q.slice(0, i))
+      if (i >= q.length) window.clearInterval(id)
+    }, 28)
+    return () => window.clearInterval(id)
+  }, [locked, frame.quote, frame.id, reduceMotion])
+
   const lockFrame = useCallback((i) => {
     setIndex(i)
     setLocked(true)
   }, [])
 
-  const unlock = useCallback(() => {
-    setLocked(false)
-  }, [])
+  const unlock = useCallback(() => setLocked(false), [])
 
   return (
-    <header className="hero" id="top">
-      <div className="hero__stage" aria-hidden={!locked}>
+    <header className={`hero${locked ? ' is-locked' : ''}`} id="top">
+      <div className="hero__scanlines" aria-hidden="true" />
+      <AsciiField
+        className="hero__field"
+        seed={11 + index * 3}
+        rows={20}
+        cols={64}
+        dense={locked}
+      />
+
+      <div className="hero__stage">
         {heroFrames.map((f, i) => (
           <div
             key={f.id}
             className={`hero__frame${i === index ? ' is-active' : ''}${locked && i === index ? ' is-locked' : ''}`}
           >
-            <img
-              className="hero__media"
-              src={f.src}
-              alt=""
-              draggable={false}
-            />
+            <img className="hero__media" src={f.src} alt="" draggable={false} />
             <div className="hero__veil" />
           </div>
         ))}
       </div>
 
-      <div className="hero__grain" aria-hidden="true" />
-
       <div className="hero__ticker" aria-hidden="true">
         <div className="hero__ticker-track">
           {[...items, ...items].map((label, i) => (
             <span key={`${label}-${i}`} className="hero__ticker-item">
-              {label}
-              <span className="hero__ticker-sep"> · </span>
+              <span className="hero__ticker-sep">◆</span> {label}{' '}
             </span>
           ))}
         </div>
@@ -73,11 +94,17 @@ export default function Hero() {
           {frame.title}
           {locked ? ' · locked' : ' · live'}
         </p>
+
         <h1 className="hero__wordmark">{hero.wordmark}</h1>
         <p className="hero__line">{hero.line}</p>
+
         {locked ? (
           <p className="hero__quote" key={frame.id}>
-            “{frame.quote}”
+            “{typed}
+            <span className="hero__caret" aria-hidden="true">
+              _
+            </span>
+            ”
           </p>
         ) : (
           <p className="hero__hint">Tap a frame to lock</p>
@@ -93,7 +120,9 @@ export default function Hero() {
               aria-pressed={locked && i === index}
               aria-label={`${f.title}${locked && i === index ? ' (unlock)' : ' (lock)'}`}
             >
-              <img src={f.src} alt="" draggable={false} />
+              <span className="hero__thumb-frame">
+                <img src={f.src} alt="" draggable={false} />
+              </span>
               <span>{f.title}</span>
             </button>
           ))}

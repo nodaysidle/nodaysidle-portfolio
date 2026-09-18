@@ -192,7 +192,7 @@ export const products = [
     world: 'clean',
     kicker: 'macOS aarch64',
     line: 'Rename the batch. Keep the order.',
-    ctaLabel: 'Download DMG',
+    ctaLabel: 'Download aarch64 DMG',
     ctaHref:
       'https://github.com/nodaysidle/batchrename-pro/releases/download/v0.1.0/BatchRename-Pro-0.1.0-aarch64.dmg',
     ticker: 'BatchRename Pro · aarch64 · DMG',
@@ -230,7 +230,7 @@ export const products = [
     world: 'listen',
     kicker: 'Tauri + React',
     line: 'Listen. Stay local.',
-    ctaLabel: 'Download DMG',
+    ctaLabel: 'Download aarch64 DMG',
     ctaHref:
       'https://github.com/nodaysidle/nodaysidle-sonora/releases/download/v0.1.1/Sonora_0.1.1_aarch64.dmg',
     stack: 'Tauri + React · aarch64',
